@@ -1,19 +1,44 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+} from '@nestjs/common';
+import { DestinationService } from './destination.service';
+import { Destination } from './destination.entity';
 
-@Entity()
-export class Destination {
-  @PrimaryGeneratedColumn()
-  id: number;
+@Controller('destinations')
+export class DestinationController {
+  constructor(private readonly destinationService: DestinationService) {}
 
-  @Column()
-  name: string;
+  @Get()
+  async findAll(): Promise<Destination[]> {
+    return this.destinationService.findAll();
+  }
 
-  @Column()
-  address: string;
+  @Get(':id')
+  async findOne(@Param('id') id: number): Promise<Destination> {
+    return this.destinationService.findOne(id);
+  }
 
-  @Column()
-  description: string;
+  @Post()
+  async create(@Body() destination: Destination): Promise<Destination> {
+    return this.destinationService.create(destination);
+  }
 
-  @Column()
-  imageUrl: string;
+  @Put(':id')
+  async update(
+    @Param('id') id: number,
+    @Body() destination: Destination,
+  ): Promise<Destination> {
+    return this.destinationService.update(id, destination);
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id: number): Promise<void> {
+    return this.destinationService.delete(id);
+  }
 }
