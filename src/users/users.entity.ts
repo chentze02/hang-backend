@@ -1,19 +1,19 @@
-// // import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+// import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-// @Entity()
-// export class User {
-//   @PrimaryGeneratedColumn()
-//   id: number;
+@Entity()
+export class User {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-//   @Column()
-//   username: string;
+  @Column()
+  username: string;
 
-//   @Column()
-//   gender: string;
+  @Column()
+  gender: string;
 
-//   @Column()
-//   email: string;
+  @Column()
+  email: string;
 
-//   @Column()
-//   password: string;
-// }
+  @Column()
+  password: string;
+}
